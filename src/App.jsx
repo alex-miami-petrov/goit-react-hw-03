@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import ContactList from "./components/ContactList";
 import SearchBox from "./components/SearchBox";
-import ContactForm from "./ContactForm";
+import ContactForm from "./components/ContactForm";
 
 const initialContacts = [
   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
@@ -18,17 +18,19 @@ const App = () => {
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem("contacts")) || [];
-    if (savedContacts.length === 0) {
+    const savedContacts = JSON.parse(localStorage.getItem("contacts"));
+    if (savedContacts && savedContacts.length > 0) {
+      setContacts(savedContacts);
+    } else {
       localStorage.setItem("contacts", JSON.stringify(initialContacts));
       setContacts(initialContacts);
-    } else {
-      setContacts(savedContacts);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
+    if (contacts.length > 0) {
+      localStorage.setItem("contacts", JSON.stringify(contacts));
+    }
   }, [contacts]);
 
   const handleFilterChange = (event) => {
@@ -54,14 +56,20 @@ const App = () => {
   const filteredContacts = getFilteredContacts();
 
   return (
-    <div>
-      <h1>Contacts</h1>
-      <SearchBox value={filter} onChange={handleFilterChange} />
-      <ContactForm onAddContact={handleAddContact} />
-      <ContactList
-        contacts={filteredContacts}
-        onDeleteContact={handleContactDelete}
-      />
+    <div className="app-container">
+      <h1>Phonebook</h1>
+      <div className="contact-form">
+        <ContactForm onAddContact={handleAddContact} />
+      </div>
+      <div className="search-box">
+        <SearchBox value={filter} onChange={handleFilterChange} />
+      </div>
+      <div className="contact-list">
+        <ContactList
+          contacts={filteredContacts}
+          onDeleteContact={handleContactDelete}
+        />
+      </div>
     </div>
   );
 };
