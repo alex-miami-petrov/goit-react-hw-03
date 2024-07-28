@@ -2,65 +2,66 @@ import React, { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import ContactList from "./components/ContactList";
+import SearchBox from "./components/SearchBox";
+import ContactForm from "./ContactForm";
 
-import Feedback from "./components/Feedback";
-import Options from "./components/Options";
-import Notification from "./components/Notification";
+const initialContacts = [
+  { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+  { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+  { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+  { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+];
 
 const App = () => {
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
-
-  const updateFeedback = (feedbackType) => {
-    setFeedback({
-      ...feedback,
-      [feedbackType]: feedback[feedbackType] + 1,
-    });
-  };
-
-  const resetFeedback = () => {
-    setFeedback({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
-  };
-
-  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
+  const [contacts, setContacts] = useState([]);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
-    const storedFeedback = JSON.parse(localStorage.getItem("feedback"));
-    if (storedFeedback) {
-      setFeedback(storedFeedback);
+    const savedContacts = JSON.parse(localStorage.getItem("contacts")) || [];
+    if (savedContacts.length === 0) {
+      localStorage.setItem("contacts", JSON.stringify(initialContacts));
+      setContacts(initialContacts);
+    } else {
+      setContacts(savedContacts);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("feedback", JSON.stringify(feedback));
-  }, [feedback]);
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
+
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const getFilteredContacts = () => {
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
+  const handleAddContact = (newContact) => {
+    setContacts((prevContacts) => [...prevContacts, newContact]);
+  };
+
+  const handleContactDelete = (contactId) => {
+    setContacts((prevContacts) =>
+      prevContacts.filter((contact) => contact.id !== contactId)
+    );
+  };
+
+  const filteredContacts = getFilteredContacts();
 
   return (
     <div>
-      <h1>Sip Happens Café</h1>
-      <Options
-        updateFeedback={updateFeedback}
-        totalFeedback={totalFeedback}
-        resetFeedback={resetFeedback}
+      <h1>Contacts</h1>
+      <SearchBox value={filter} onChange={handleFilterChange} />
+      <ContactForm onAddContact={handleAddContact} />
+      <ContactList
+        contacts={filteredContacts}
+        onDeleteContact={handleContactDelete}
       />
-      {totalFeedback > 0 ? (
-        <Feedback feedback={feedback} positiveFeedback={positiveFeedback} />
-      ) : (
-        <Notification message="Please leave your feedback by selecting one of the options below." />
-      )}
-      <p>Total feedback collected: {totalFeedback}</p>
-      <p>
-        Percentage of positive feedback:{" "}
-        {isNaN(positiveFeedback) ? "0%" : `${positiveFeedback}%`}
-      </p>
     </div>
   );
 };
