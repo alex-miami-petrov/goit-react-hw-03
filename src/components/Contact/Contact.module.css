@@ -1,14 +1,14 @@
-.contact-item {
+.contactItem {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 10px;
 }
 
-.contact-name {
+.contactName {
   margin: 0;
 }
 
-.contact-number {
+.contactNumber {
   margin: 0;
 }

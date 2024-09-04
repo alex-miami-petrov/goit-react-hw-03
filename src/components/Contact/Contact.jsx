@@ -1,11 +1,11 @@
 import React from "react";
-import "./Contact.module.css";
+import s from "./Contact.module.css";
 
 const Contact = ({ name, number }) => {
   return (
-    <div className="contact-item">
-      <p className="contact-name">{name}</p>
-      <p className="contact-number">{number}</p>
+    <div className={s.contactItem}>
+      <p className={s.contactName}>{name}</p>
+      <p className={s.contactNumber}>{number}</p>
     </div>
   );
 };

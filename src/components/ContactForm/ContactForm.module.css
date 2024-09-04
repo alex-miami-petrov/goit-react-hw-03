@@ -1,18 +1,18 @@
-.form-name {
+.formName {
   text-align: left;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.form-number {
+.formNumber {
   text-align: left;
 
   display: flex;
   flex-direction: column;
 }
 
-.form-name input {
+.formName input {
   max-width: 190px;
 }
 
@@ -20,10 +20,10 @@
   max-width: 190px;
 }
 
-.form-btn {
+.formBtn {
 }
 
-.contact-form {
+.contactForm {
   border: 1px solid black;
   padding: 10px;
 
@@ -31,8 +31,8 @@
   margin-bottom: 20px;
 }
 
-form.contact-form {
-  border: none;
+form.contactForm {
+  /* border: none; */
   text-align: left;
   margin-bottom: 10px;
   display: flex;
@@ -51,13 +51,13 @@ input#name {
   margin-top: 4px;
 }
 
-.contact-form {
+.contactForm {
   max-width: 300px;
 
   padding: 10px;
 }
 
-.contact-form input {
+.contactForm input {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
