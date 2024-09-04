@@ -44,11 +44,11 @@ button {
 }
 input#number {
   margin-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 4px;
 }
 input#name {
   margin-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 4px;
 }
 
 .contact-form {
