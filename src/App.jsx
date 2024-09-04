@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import ContactList from "./components/ContactList";
 import SearchBox from "./components/SearchBox";
-import ContactForm from "./components/ContactForm";
+import ContactForm from "./components/ContactForm/ContactForm";
 
 const initialContacts = [
   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
