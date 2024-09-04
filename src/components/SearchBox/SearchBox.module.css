@@ -1,18 +1,18 @@
-.search-box {
+.searchBox {
   display: flex;
   flex-direction: column;
   text-align: left;
 }
 
-.search-box input {
+/* .searchBox input {
   max-width: 235px;
-}
+} */
 
-.search-box {
+.searchBox {
   max-width: 322px;
 }
 
-.search-box input {
+.searchBox input {
   max-width: 100%;
   padding: 10px;
   box-sizing: border-box;
