@@ -1,6 +1,6 @@
 import React from "react";
 import Contact from "../Contact";
-import s from "./ContactList/ContactList.module.css";
+import s from "./ContactList.module.css";
 
 const ContactList = ({ contacts, onDeleteContact }) => (
   <ul className={s.contact - list}>
