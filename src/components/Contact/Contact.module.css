@@ -1,9 +1,6 @@
 .contactItem {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 10px;
-  margin-right: auto;
+  justify-content: space-between;
 }
 
 .contactName {
@@ -12,4 +9,16 @@
 
 .contactNumber {
   margin: 0;
+}
+
+.contactWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  margin-right: auto;
+}
+
+button {
+  margin: unset;
 }
